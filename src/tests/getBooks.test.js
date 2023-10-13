@@ -10,11 +10,37 @@ describe("get books", () => {
          pages: 325,
          category: "fantasia",
       });
+
+      await request.post("/books").send({
+         name: "Jogos Vorazes",
+         pages: 325,
+         category: "fantasia",
+      });
    });
 
    it("should be able to get books correctly", async () => {
       const data = await request
          .get("/books")
+         .expect(200)
+         .then((response) => response.body);
+
+      expect(data).toHaveLength(2);
+
+      bookDefaultExpects(data[0]);
+
+      expect(data[0].category).toBeDefined();
+      expect(data[0].category).toBeTypeOf("string");
+
+      
+      bookDefaultExpects(data[1]);
+
+      expect(data[1].category).toBeDefined();
+      expect(data[1].category).toBeTypeOf("string");
+   });
+
+   it("should be able to search books sucessfully", async () => {
+      const data = await request
+         .get("/books?search=harry")
          .expect(200)
          .then((response) => response.body);
 
@@ -42,8 +68,10 @@ describe("get books", () => {
       const data = await request
          .get("/books/2")
          .expect(404)
-         .then((response) => response.body)
+         .then((response) => response.body);
 
       errorDefaultExpects(data);
    });
+
+  
 });
