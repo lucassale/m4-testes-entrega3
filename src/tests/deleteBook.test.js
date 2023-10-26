@@ -6,7 +6,7 @@ import { firstBookMock } from "./__mocks/books";
 
 describe("delete book", () => {
    beforeAll(() => {
-      booksDatabase.push(firstBookMock);
+      booksDatabase.push(firstBookMock());
    });
 
    it("should throw error when the id is incorrect", () => {

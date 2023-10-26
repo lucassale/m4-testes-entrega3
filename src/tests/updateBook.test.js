@@ -7,8 +7,8 @@ import { firstBookMock, secondBookMock } from "./__mocks/books";
 
 describe("update book", () => {
    beforeAll(() => {
-      booksDatabase.push(firstBookMock);
-      booksDatabase.push(secondBookMock);
+      booksDatabase.push(firstBookMock());
+      booksDatabase.push(secondBookMock());
    });
 
    it("should be able to update a book correctly", async () => {
