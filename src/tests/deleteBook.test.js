@@ -9,7 +9,7 @@ describe("delete book", () => {
       booksDatabase.push(firstBookMock());
    });
 
-   it("should throw error when the id is incorrect", () => {
+   it("should be able to delete a car sucessfully", () => {
       request.delete("/books/1").expect(204);
    });
 
