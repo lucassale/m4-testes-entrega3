@@ -58,19 +58,19 @@ describe("create book", () => {
       const data = await request
          .post("/books")
          .send({
-            category: "Example"
+            category: "Example",
          })
          .expect(409)
          .then((response) => response.body);
 
       expect(data.issues).toHaveLength(2);
 
-      expect(data.issues[0]).toBeTypeOf("object");   
-      expect(data.issues[0].message).toBe("Required"); 
+      expect(data.issues[0]).toBeTypeOf("object");
+      expect(data.issues[0].message).toBe("Required");
 
-      expect(data.issues[1]).toBeTypeOf("object");   
-      expect(data.issues[1].message).toBe("Required"); 
-   })
+      expect(data.issues[1]).toBeTypeOf("object");
+      expect(data.issues[1].message).toBe("Required");
+   });
 
    it("should throw error when some invalid value type are sent", async () => {
       const data = await request
@@ -78,17 +78,17 @@ describe("create book", () => {
          .send({
             name: 123,
             pages: "Otavio",
-            category: "Example"
+            category: "Example",
          })
          .expect(409)
          .then((response) => response.body);
 
       expect(data.issues).toHaveLength(2);
-      
-      expect(data.issues[0]).toBeTypeOf("object");   
-      expect(data.issues[0].message).toBe("Expected string, received number"); 
 
-      expect(data.issues[1]).toBeTypeOf("object");   
-      expect(data.issues[1].message).toBe("Expected number, received string"); 
-   })
+      expect(data.issues[0]).toBeTypeOf("object");
+      expect(data.issues[0].message).toBe("Expected string, received number");
+
+      expect(data.issues[1]).toBeTypeOf("object");
+      expect(data.issues[1].message).toBe("Expected number, received string");
+   });
 });

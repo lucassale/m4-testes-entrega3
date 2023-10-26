@@ -55,17 +55,17 @@ describe("update book", () => {
          .send({
             name: 123,
             pages: "Otavio",
-            category: "Example"
+            category: "Example",
          })
          .expect(409)
          .then((response) => response.body);
 
       expect(data.issues).toHaveLength(2);
-      
-      expect(data.issues[0]).toBeTypeOf("object");   
-      expect(data.issues[0].message).toBe("Expected string, received number"); 
 
-      expect(data.issues[1]).toBeTypeOf("object");   
-      expect(data.issues[1].message).toBe("Expected number, received string"); 
-   })
+      expect(data.issues[0]).toBeTypeOf("object");
+      expect(data.issues[0].message).toBe("Expected string, received number");
+
+      expect(data.issues[1]).toBeTypeOf("object");
+      expect(data.issues[1].message).toBe("Expected number, received string");
+   });
 });

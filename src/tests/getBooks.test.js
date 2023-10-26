@@ -24,7 +24,6 @@ describe("get books", () => {
       expect(data[0].category).toBeDefined();
       expect(data[0].category).toBeTypeOf("string");
 
-      
       bookDefaultExpects(data[1]);
 
       expect(data[1].category).toBeDefined();
@@ -65,6 +64,4 @@ describe("get books", () => {
 
       errorDefaultExpects(data);
    });
-
-  
 });
