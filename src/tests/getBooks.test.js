@@ -2,20 +2,13 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { bookDefaultExpects } from "./utils/bookDefaultExpects";
 import { errorDefaultExpects } from "./utils/errorDefaultExpects";
 import { request } from "./setupFiles";
+import { booksDatabase } from "../database/database";
+import { firstBookMock, secondBookMock } from "./__mocks/books";
 
 describe("get books", () => {
-   beforeAll(async () => {
-      await request.post("/books").send({
-         name: "Harry Potter",
-         pages: 325,
-         category: "fantasia",
-      });
-
-      await request.post("/books").send({
-         name: "Jogos Vorazes",
-         pages: 325,
-         category: "fantasia",
-      });
+   beforeAll(() => {
+      booksDatabase.push(firstBookMock);
+      booksDatabase.push(secondBookMock);
    });
 
    it("should be able to get books correctly", async () => {

@@ -1,14 +1,12 @@
 import { describe, it, beforeAll } from "vitest";
 import { errorDefaultExpects } from "./utils/errorDefaultExpects";
 import { request } from "./setupFiles";
+import { booksDatabase } from "../database/database";
+import { firstBookMock } from "./__mocks/books";
 
 describe("delete book", () => {
-   beforeAll(async () => {
-      await request.post("/books").send({
-         name: "Harry Potter",
-         pages: 325,
-         category: "fantasia",
-      });
+   beforeAll(() => {
+      booksDatabase.push(firstBookMock);
    });
 
    it("should throw error when the id is incorrect", () => {
